@@ -1,0 +1,14 @@
+# ansible-galaxy collection install dsglaser.cis_security
+# ansible-playbook --private-key /path/to/keypair.pem -u ec2-user -i hosts.ini playbook.yml
+---
+- name: Harden OS to CIS Benchmark Level 1
+  hosts: all
+  become: yes
+  ignore_errors: yes
+
+  collections:
+  - dsglaser.cis_security
+
+  tasks:
+  - import_role:
+      name: cis_security
